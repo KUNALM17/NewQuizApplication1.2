@@ -32,7 +32,7 @@ A Spring Boot-based Quiz Application with JWT authentication and role-based acce
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/NewQuizApplication.git
+   git clone https://github.com/yourusername/NewQuizApplication1.2.git
    cd NewQuizApplication
    ```
 
