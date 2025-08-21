@@ -15,6 +15,12 @@ import com.example.demo.Model.Question;
 @Service
 public class QuestionService {
 	@Autowired
+	com.example.demo.Dao.QuestionDao questionDao;
+
+	public List<String> getAllCategories() {
+		return questionDao.findDistinctCategories();
+	}
+	@Autowired
 	QuestionDao repo;
 
 	public ResponseEntity< List<Question>> getAllQuestions() {
@@ -28,12 +34,11 @@ public class QuestionService {
 	}
 
 	public List<Question> getByCategory(String category) {
-		// TODO Auto-generated method stub
 		return repo.findByCategory(category);
 	}
 
 	public ResponseEntity<String> addQuestion(Question question) {
-		// TODO Auto-generated method stub
+		
 		try {
 		 repo.save(question);
 		 return new ResponseEntity<>("Question Added Successfully",HttpStatus.CREATED);
@@ -45,9 +50,41 @@ public class QuestionService {
 	}
 
 	public Optional<Question> getById(int id) {
-		// TODO Auto-generated method stub
+	
 		return repo.findById(id);
 	}
+
+	//New features 
+
+public ResponseEntity<String> deleteQuestion(int id) {
+    try {
+        if (repo.existsById(id)) {
+            repo.deleteById(id);
+            return new ResponseEntity<>("Question deleted successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Question not found", HttpStatus.NOT_FOUND);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        return new ResponseEntity<>("Error deleting question", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
+
+public ResponseEntity<String> updateQuestion(int id, Question question) {
+    try {
+        if (repo.existsById(id)) {
+            // Ensure the ID from the path is set on the object before saving
+            question.setId(id);
+            repo.save(question);
+            return new ResponseEntity<>("Question updated successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Question not found", HttpStatus.NOT_FOUND);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        return new ResponseEntity<>("Error updating question", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
 	
 
 }

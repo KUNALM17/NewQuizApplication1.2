@@ -49,10 +49,11 @@ public class QuizController {
 		return quizService.deleteAllQuizzes();
 	}
 	
-	@GetMapping("admin/quiz/all")
+	@GetMapping("user/quiz/all")
 	public ResponseEntity<List<Quiz>> getAllQuizzes() {
 		return quizService.getAllQuizzes();
 	}
+	
 
 	
 	

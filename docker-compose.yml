@@ -1,0 +1,15 @@
+
+services:
+  backend:
+    build: .
+    container_name: quiz-backend
+    ports:
+      - "8080:8080"
+  
+  frontend:
+    build: ./quiz-frontend
+    container_name: quiz-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
