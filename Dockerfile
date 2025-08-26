@@ -1,18 +1,14 @@
-# Backend Dockerfile
-FROM eclipse-temurin:21-jdk AS build
-WORKDIR /app
+# Use a specific Java version for consistency
+FROM openjdk:21-jdk-slim
 
-# Maven wrapper ke sath build karna
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:go-offline
+# Set an argument for the JAR file name
+ARG JAR_FILE=target/*.jar
 
-COPY src ./src
-RUN ./mvnw package -DskipTests
+# Copy the executable jar file to the container
+COPY ${JAR_FILE} app.jar
 
-# final image
-FROM eclipse-temurin:21-jdk
-WORKDIR /app
-COPY --from=build /app/target/*.jar app.jar
+# Expose the port the app runs on
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","app.jar"]
+
+# Run the jar file
+ENTRYPOINT ["java","-jar","/app.jar"]

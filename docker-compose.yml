@@ -1,15 +1,36 @@
+version: '3.8'
 
 services:
+  db:
+    image: postgres:latest
+    container_name: quiz_postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Kunal10
+      POSTGRES_DB: NewQuizAppdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
   backend:
+    container_name: quiz_spring_backend
     build: .
-    container_name: quiz-backend
     ports:
       - "8080:8080"
-  
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/NewQuizAppdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: Kunal10
+      JWT_SECRET: mySecretKeyThatIsAtLeast256BitsLongForHS256Algorithm
+    depends_on:
+      - db
+
   frontend:
+    container_name: quiz_react_frontend
     build: ./quiz-frontend
-    container_name: quiz-frontend
     ports:
       - "3000:80"
-    depends_on:
-      - backend
+
+volumes:
+  postgres-data:
