@@ -10,8 +10,8 @@ export default function App() {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [message, setMessage] = useState({ text: '', type: '' });
 
-  // --- API Configuration (FIXED) ---
-  const API_BASE_URL = '/api'; // This makes API calls relative and prefixes them with /api for Nginx
+  // --- API Configuration (THEEK KIYA HUA) ---
+  const API_BASE_URL = '/api';
 
   // --- Helper Functions ---
   const showMessage = useCallback((text, type) => {
@@ -41,7 +41,7 @@ export default function App() {
   // Centralized fetch with auth + error handling
   const apiFetch = useCallback(async (path, { method = 'GET', body, headers = {} } = {}) => {
     if (!path.startsWith('http')) path = `${API_BASE_URL}${path}`;
-    const currentToken = localStorage.getItem('quiz_app_token'); // Always get the latest token
+    const currentToken = localStorage.getItem('quiz_app_token');
     const init = {
       method,
       headers: {
@@ -54,7 +54,6 @@ export default function App() {
     };
 
     const res = await fetch(path, init);
-    
     const responseText = await res.text().catch(() => '');
 
     if (!res.ok) {
