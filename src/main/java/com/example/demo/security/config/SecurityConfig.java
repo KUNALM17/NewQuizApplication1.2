@@ -49,7 +49,8 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(@org.springframework.lang.NonNull CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("*") // <-- YAHAN BADLAAV KIYA HAI
+                        // YAHAN BADLAAV KIYA HAI - DONO ADDRESS DAAL DIYE HAIN
+                        .allowedOrigins("http://localhost:3000", "http://34.131.31.90:3000") 
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
