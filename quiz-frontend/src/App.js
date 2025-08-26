@@ -10,8 +10,8 @@ export default function App() {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [message, setMessage] = useState({ text: '', type: '' });
 
-  // --- API Configuration ---
-  const API_BASE_URL = 'http://localhost:8080';
+  // --- API Configuration (FIXED) ---
+  const API_BASE_URL = '/api'; // This makes API calls relative and prefixes them with /api for Nginx
 
   // --- Helper Functions ---
   const showMessage = useCallback((text, type) => {
@@ -38,7 +38,6 @@ export default function App() {
     return [];
   };
 
-  // --- MODIFIED FUNCTION ---
   // Centralized fetch with auth + error handling
   const apiFetch = useCallback(async (path, { method = 'GET', body, headers = {} } = {}) => {
     if (!path.startsWith('http')) path = `${API_BASE_URL}${path}`;
@@ -56,31 +55,24 @@ export default function App() {
 
     const res = await fetch(path, init);
     
-    // First, get the raw text of the response body.
     const responseText = await res.text().catch(() => '');
 
     if (!res.ok) {
-      // If the response is not OK, use the response text for a more detailed error.
       const errMsg = responseText || `Request failed (${res.status})`;
       throw new Error(errMsg);
     }
     
-    // If the request was successful, but the response body is empty, return null.
     if (!responseText) {
       return null;
     }
 
-    // Try to parse the response as JSON.
     try {
       return JSON.parse(responseText);
     } catch (e) {
-      // If parsing fails, it means the backend sent a non-JSON success response (e.g., a simple string).
-      // For the parts of this app that don't use the response body (like quiz creation), returning null is safe.
       console.warn("API response was not valid JSON:", responseText);
       return null;
     }
   }, []);
-  // --- END OF MODIFICATION ---
 
   // --- Authentication ---
   useEffect(() => {
@@ -438,9 +430,9 @@ function CreateAdminUser({ navigateTo, apiFetch, showMessage }) {
                 <div>
                     <label htmlFor="role-select" className="block text-sm font-medium text-gray-700">Role</label>
                      <Select id="role-select" value={role} onChange={(e) => setRole(e.target.value)} required>
-                        <option value="ADMIN">ADMIN</option>
-                        <option value="USER">USER</option>
-                    </Select>
+                         <option value="ADMIN">ADMIN</option>
+                         <option value="USER">USER</option>
+                     </Select>
                 </div>
                 <div className="flex space-x-4 pt-4">
                     <Button type="button" onClick={() => navigateTo('admin_dashboard')} className="bg-gray-500 hover:bg-gray-600">Cancel</Button>
