@@ -16,7 +16,6 @@ com\example\demo\Dao\QuestionDao.class
 com\example\demo\Service\QuestionService.class
 com\example\demo\Controller\QuestionController.class
 com\example\demo\Model\Quiz.class
-com\example\demo\security\config\SecurityConfig$1.class
 com\example\demo\security\controller\AuthController$RegisterRequest.class
 com\example\demo\security\repo\RoleRepository.class
 com\example\demo\security\model\Role.class
