@@ -1,0 +1,18 @@
+[33ma5231c43[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Final security config to fix 403 error
+[33m43d7bb41[m Final CORS config for both local and prod
+[33m15bc87c5[m Fix final CORS config for deployment
+[33m71fc01d1[m Fix final CORS config for deployment
+[33maa85bb14[m Fix proxy for local development and update nginx config
+[33mb0a14b2a[m Fix API URL for production deployment
+[33mdbc4b876[m Force execute permissions in Dockerfile
+[33mcf88a958[m Force execute permissions in Dockerfile
+[33m6b2f62ed[m Fix file permissions for docker build
+[33mf82ddf7c[m Add .dockerignore for frontend
+[33mf85aacd7[m Fullstack
+[33m0bf7fb9e[m Merge branch 'main' of https://github.com/KUNALM17/NewQuizApplication1.2
+[33m6d497417[m Fullstack
+[33m9927a756[m Create google.yml
+[33m72b2b2ba[m Update README.md
+[33mdfacd358[m Update README.md
+[33m761058a1[m Initial commit - Added project files
+[33m0efcdaf5[m Initial commit

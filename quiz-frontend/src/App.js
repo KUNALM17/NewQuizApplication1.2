@@ -11,7 +11,7 @@ export default function App() {
   const [message, setMessage] = useState({ text: '', type: '' });
 
   // --- API Configuration (THEEK KIYA HUA) ---
-  const API_BASE_URL = '/api';
+  const API_BASE_URL = '';
 
   // --- Helper Functions ---
   const showMessage = useCallback((text, type) => {
