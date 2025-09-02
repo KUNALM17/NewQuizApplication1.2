@@ -1,0 +1,23 @@
+# Build artifacts
+target/
+*.jar
+*.war
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Test reports
+surefire-reports/
+
+# Node modules (for frontend)
+quiz-frontend/node_modules/
+quiz-frontend/build/
