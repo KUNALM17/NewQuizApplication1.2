@@ -66,6 +66,11 @@ A Spring Boot-based Quiz Application with JWT authentication and role-based acce
 - `GET /admin/question/category/{category}` — Get questions by category (admin)
 - `GET /admin/question/id/{id}` — Get question by ID (admin)
 
+#### Application Info
+
+- `GET /info/git` — Get git commit information (hash, author, date)
+- `GET /info/version` — Get application version information
+
 ## License
 
 This project is licensed

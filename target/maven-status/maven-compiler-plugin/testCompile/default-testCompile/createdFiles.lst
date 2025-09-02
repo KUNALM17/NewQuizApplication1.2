@@ -1,1 +1,4 @@
-com\example\demo\NewQuizApplicationTests.class
+com/example/demo/test/GitInfoTest.class
+com/example/demo/NewQuizApplicationTests.class
+com/example/demo/Controller/GitInfoControllerIntegrationTest.class
+com/example/demo/Controller/GitInfoControllerTest.class
